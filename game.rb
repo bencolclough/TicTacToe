@@ -6,6 +6,15 @@
     end
   end
 
+  module TicTacToeBoard
+    def display_board(board)
+        puts "TIC-TAC-TOE"
+        puts " #{board[0]} | #{board[1]} | #{board[2]}"
+        puts " #{board[3]} | #{board[4]} | #{board[5]}"
+        puts " #{board[6]} | #{board[7]} | #{board[8]}"
+    end
+  end
+
   class Player
     # getter
     attr_reader :name, :players, :counter
@@ -27,6 +36,7 @@
 
   class Game
     include Names
+    include TicTacToeBoard
     @@board = [0,1,2,3,"X",5,6,7,8]  
 
     def introduce_game
@@ -41,14 +51,6 @@
         print "Player 2, "
         Player.new(ask_name(), "O")
        
-    end
-
-    def display_board(board)
-        puts "TIC-TAC-TOE"
-        puts " #{board[0]} | #{board[1]} | #{board[2]}"
-        puts " #{board[3]} | #{board[4]} | #{board[5]}"
-        puts " #{board[6]} | #{board[7]} | #{board[8]}"
-        
     end
 
     def choose_location
