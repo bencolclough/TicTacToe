@@ -1,14 +1,11 @@
   
-  board = [[1,2,3],[4,5,6],[7,8,9]]  
-  
-  def display_board(board)
-    puts "TIC-TAC-TOE"
-    p board[0]
-    p board[1]
-    p board[2]
+  module Names
+    def ask_name()
+        print "Enter Your Name: "
+        gets.chomp
+    end
   end
-  display_board(board)
-  
+
   class Player
     def initialize(name, counter)
       @name = name
@@ -17,19 +14,28 @@
     end
   end
 
-  def ask_name()
-    print "Enter Your Name: "
-    gets.chomp
+  class Game
+    include Names
+
+    def get_players
+        print "Player 1, "
+        Player.new(ask_name(), "X")
+        print "Player 2, "
+        Player.new(ask_name(), "O")
+    end
+
+    def display_board(board)
+        puts "TIC-TAC-TOE"
+        p board[0]
+        p board[1]
+        p board[2]
+    end
   end
 
-  def get_players()
-    print "Player 1, "
-    Player.new(ask_name(), "X")
-    print "Player 2, "
-    Player.new(ask_name(), "O")
-  end
-
-get_players
+  Game1 = Game.new
+  board = [[1,2,3],[4,5,6],[7,8,9]]  
+  Game1.display_board(board)
+  Game1.get_players  
 
 
 
