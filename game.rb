@@ -16,7 +16,7 @@
 
   class Game
     include Names
-    @@board = [0,1,2,3,4,5,6,7,8]  
+    @@board = [0,1,2,3,"X",5,6,7,8]  
 
     def introduce_game
         puts ".......WELCOME......."
@@ -44,7 +44,14 @@
         display_board(@@board)
         print "Choose location between 0 and 8: "
         player_selection = gets.chomp.to_i
-        @@board[player_selection] = "X"
+        
+        if @@board[player_selection] === "X" || @@board[player_selection] === "O"
+            print "That space is taken, choose available location"
+            player_selection = gets.chomp.to_i
+            @@board[player_selection] = "X"
+        else
+            @@board[player_selection] = "X"
+        end
         display_board(@@board)
     end
     
