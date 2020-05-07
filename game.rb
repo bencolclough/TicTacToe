@@ -7,11 +7,22 @@
   end
 
   class Player
+    # getter
+    attr_reader :name, :players, :counter
+    @@players = Hash.new
+
     def initialize(name, counter)
       @name = name
       @counter = counter
+      @@players[self.name]=self.counter
       puts "welcome to TicTacToe #{@name}, you are playing #{@counter}'s"
+      p @@players
     end
+
+    def self.players
+        @@players
+    end
+    
   end
 
   class Game
@@ -29,7 +40,7 @@
         
         print "Player 2, "
         Player.new(ask_name(), "O")
-
+       
     end
 
     def display_board(board)
@@ -41,18 +52,21 @@
     end
 
     def choose_location
-        display_board(@@board)
-        print "Choose location between 0 and 8: "
-        player_selection = gets.chomp.to_i
-        
-        if @@board[player_selection] === "X" || @@board[player_selection] === "O"
-            print "That space is taken, choose available location"
+        Player.players.each do |name, counter| 
+            display_board(@@board)
+            print "#{name}, choose location between 0 and 8: "
             player_selection = gets.chomp.to_i
-            @@board[player_selection] = "X"
-        else
-            @@board[player_selection] = "X"
+                
+            if @@board[player_selection] === "X" || @@board[player_selection] === "O"
+                print "That space is taken, choose an available location: "
+                player_selection = gets.chomp.to_i
+                @@board[player_selection] = counter
+            else
+                @@board[player_selection] = counter
+            end
+            display_board(@@board)
         end
-        display_board(@@board)
+        
     end
     
    
