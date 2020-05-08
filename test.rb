@@ -1,12 +1,5 @@
 
-module Printboard
-    def Printboard.printarrays(board)
-        p board[0]
-        p board[1]
-        p board[2]
-    end
-end
 
+p ("c"||"b") == ("b"||"d") 
 
-board = [[1,2,3],[4,5,6],[7,8,9]]
-Printboard.printarrays(board)
+p "c" == "b" || "c"=="d" || "b"=="b" || "b"=="d"
